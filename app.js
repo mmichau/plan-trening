@@ -20,84 +20,67 @@ window.storage = {
 };
 
 /* ---------- DATA ---------- */
+const HOW = url => ` <a href="${url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Jak to zrobić →</a>`;
+const YT = q => 'https://www.youtube.com/results?search_query=' + q;
+
+const WARMUP = p => [
+  {id:p+"-w1", name:"Rowerek stacjonarny", sets:"7–8 min", badge:"warm", note:"Lekkie tempo, przy którym da się rozmawiać. Rozgrzewa kolano bez obciążenia."},
+  {id:p+"-w2", name:"Krążenia bioder + wymachy nóg", sets:"10 / strona", badge:"warm", note:"Trzymaj się drążka. Wymachy w przód i w bok, spokojnie, bez szarpania."},
+  {id:p+"-w3", name:"Krążenia ramion + zwisy na drążku", sets:"2–3 × 10 s", badge:"warm", note:"Swobodny zwis, barki rozluźnione. Przed pierwszym ćwiczeniem zrób jedną serię na połowie ciężaru."}
+];
+const STRETCH = p => [
+  {id:p+"-s1", name:"Rozciąganie pod pachą przy framudze", sets:"2 × 30 s / strona", badge:"pull", note:"Chwyć framugę ręką wysoko nad głową i odchyl biodra w bok. Rozluźnia mięśnie, które łapały skurcz przy ławce."},
+  {id:p+"-s2", name:"Rozciąganie przedramion", sets:"2 × 30 s / ręka", badge:"climb", note:"Ręka prosta przed sobą, dłonią do góry. Drugą ręką odciągnij palce w dół. Rób też po ściance."}
+];
+
 const DAYS = {
   a: {
-    label: "Dzień A — Push",
-    warmup: [
-      {id:"a-w1", name:"Chin tuck + rotacja szyi", sets:"3 × 10", badge:"head", note:"Stój przy ścianie (plecy i tyłogłowie dotykają ściany). Wciągaj brodę do środka — jakbyś robił „podwójny podbródek”. Trzymaj 3 sek. Następnie powoli obróć głowę w lewo i prawo."},
-      {id:"a-w2", name:"Band pull-apart", sets:"2 × 15", badge:"posture", note:"Elastyczna taśma przed sobą, ręce na szerokość barków. Rozciągaj taśmę poziomo, łopatki ściągaj do siebie. Łokcie proste."}
-    ],
+    label: "Dzień A — pełne nogi",
+    warmup: WARMUP("a"),
     main: [
-      {id:"a-m1", name:"Wyciskanie hantli na ławce skośnej (30°)", sets:"4 × 8–10", badge:"mass", note:"Ławka pod kątem 30° zamiast poziomej — mniejsze obciążenie rotatorów, lepsza pozycja dla postawy. Łopatki cofnięte i ściśnięte przez cały ruch."},
-      {id:"a-m2", name:"Wyciskanie żołnierskie hantlami (siedząc)", sets:"3 × 10–12", badge:"mass", note:"Siedząc na ławce z oparciem. Neutralny chwyt (kciuki do wewnątrz) łagodniejszy dla barków. Nie wygina mocno lędźwi — napnij brzuch."},
-      {id:"a-m3", name:"Rozpiętki hantlami (na ławce poziomej)", sets:"3 × 12", badge:"mass", note:"Szerokie rozpiętki rozciągają klatkę — po ćwiczeniu obowiązkowo stretching klatki. Kontrolowany ruch w dół."},
-      {id:"a-m4", name:"Face pulls na wyciągu", sets:"4 × 15", badge:"posture", note:"Lina na wysokości twarzy. Ciągnij do czoła, łokcie wysoko — palce wskazujące skierowane w sufit na końcu ruchu. Kluczowe ćwiczenie korekcyjne dla barków i kyfozy. Nie zaniedbuj!"},
-      {id:"a-m5", name:"Prostowanie ramion na wyciągu (triceps)", sets:"3 × 12", badge:"mass", note:"Stój prosto, łokcie blisko ciała. Opcja: uchwyt linowy — kciuki na zewnątrz w końcowej pozycji."}
+      {id:"a-m1", name:"Uginanie nóg na maszynie", sets:"3 × 10–12", badge:"legs", note:"Wałek jest ZA kostkami, zginasz kolana i ciągniesz pięty do pośladków. Nie myl z maszyną z wałkiem przed piszczelami (prostowanie nóg — wstrzymane do decyzji fizjo)." + HOW("https://www.corahealth.app/pl/exercises/lever-lying-leg-curl")},
+      {id:"a-m2", name:"Wyprosty tułowia na ławce rzymskiej 45°", sets:"3 × 10–12", badge:"legs", note:"Biodra na poduszce, nogi proste. Schodź, zginając się w biodrach, i wracaj, ściskając pośladki do linii prostej. Nie przeprostowuj lędźwi. Gdy 3 × 12 jest łatwe: talerz 5 kg przy klatce." + HOW(YT("45+degree+back+extension+glutes"))},
+      {id:"a-m3", name:"Wyciskanie hantli na ławce", sets:"3 × 10–12", badge:"push", note:"Łopatki ściągnij w dół i lekko do tyłu na ok. 50% siły, nie do oporu. Łokcie ok. 45° od tułowia. Wdech w dół, wydech w górę. Między seriami 20–30 s zwisu. Jeśli łapie skurcz między łopatkami lub pod pachą: maszyna do wyciskania siedząc." + HOW("https://planfit.ai/exercise/2002")},
+      {id:"a-m4", name:"Podciąganie z asystą", sets:"3 × 6–10", badge:"pull", note:"Większy ciężar na maszynie = łatwiej. Ustaw tak, żeby ostatnie 2 powtórzenia były trudne, ale czyste. Przerwa 2 min." + HOW("https://planfit.ai/exercise/assisted-pull-up")},
+      {id:"a-m5", name:"Unoszenie prostej nogi leżąc", sets:"3 × 10 / noga", badge:"knee", note:"Leżysz na plecach, druga noga zgięta. Napnij przód uda, unieś prostą nogę do wysokości drugiego kolana, 2 s pauzy, powoli w dół. Gdy 3 × 12 jest łatwe: obciążnik na kostkę 0,5–1 kg." + HOW(YT("straight+leg+raise+knee+exercise"))},
+      {id:"a-m6", name:"Unoszenie nóg w zwisie", sets:"3 × 8–10", badge:"core", note:"Na start z ugiętymi kolanami. Bez bujania — podwiń miednicę, nie tylko unoś nogi." + HOW("https://www.strengthlog.com/hanging-leg-raise/")}
     ],
-    stretch: [
-      {id:"a-s1", name:"Rozciąganie klatki piersiowej przy framudze", sets:"3 × 30 sek", badge:"posture", note:"Ręka oparta o framugę pod kątem 90°. Obróć tułów od ręki. Czujesz rozciąganie w klatce i przednim barku."},
-      {id:"a-s2", name:"Rozciąganie mięśni szyi (boczne)", sets:"2 × 30 sek", badge:"head", note:"Usiądź, jedną ręką chwyć siedzisko (dla trakcji). Drugą ręką delikatnie pochyl głowę w bok. Czujesz rozciąganie po bocznej stronie szyi."}
-    ]
+    stretch: STRETCH("a")
   },
   b: {
-    label: "Dzień B — Nogi + Core",
-    warmup: [
-      {id:"b-w1", name:"Dead bug (aktywacja core)", sets:"3 × 8 strony", badge:"apt", note:"Leżysz na plecach. Kolana zgięte do 90° w górze. Jednocześnie opuszczaj prawą nogę i lewe ramię — NIE odrywaj lędźwi od podłogi. Kluczowe ćwiczenie na APT."},
-      {id:"b-w2", name:"Glute bridge (aktywacja pośladków)", sets:"2 × 15", badge:"apt", note:"Leżysz na plecach, stopy płasko. Unieś biodra — ściśnij pośladki mocno na górze. Trzymaj 2 sekundy. Aktywuje pośladki przed przysiadem."}
-    ],
+    label: "Dzień B — lekkie nogi",
+    warmup: WARMUP("b"),
     main: [
-      {id:"b-m1", name:"Przysiad ze sztangą (lub goblet squat)", sets:"4 × 8–10", badge:"mass", note:"Jeśli APT jest silna — zacznij od goblet squat (hantel przy klatce). Plecy proste, kolana nad palcami, głowa neutralna. Nie wypychaj lędźwi w przodzie."},
-      {id:"b-m2", name:"Hip thrust ze sztangą", sets:"4 × 10–12", badge:"apt", note:"Ławka pod łopatkami. Sztanga na biodrach (z gąbką). Unieś biodra do pozycji poziomej — ściskaj pośladki! Najważniejsze ćwiczenie na APT."},
-      {id:"b-m3", name:"Martwy ciąg rumuński (RDL)", sets:"3 × 10", badge:"mass", note:"Nogi prawie proste, biodra cofaj do tyłu, plecy idealnie proste. Czujesz rozciąganie ud z tyłu. Wzmacnia pośladki i uda tylne — przeciwdziała APT."},
-      {id:"b-m4", name:"Bułgarski split squat (hantle)", sets:"3 × 10 / noga", badge:"run", note:"Tylna stopa na ławce, tułów lekko pochylony. Praca jednonóż — kluczowa dla biegaczki: buduje stabilizację biodra i kolana, wyrównuje dysproporcje między nogami. Zastępuje leg curl (uda tylne pokrywa RDL)."},
-      {id:"b-m4b", name:"Wspięcia na palce stojąc + tibialis raise", sets:"4 × 12–15 / 3 × 15", badge:"run", note:"Wspięcia: pełny zakres, 2 sek pauzy na dole (rozciągnięcie) i na górze. Tibialis raise: oprzyj się plecami o ścianę, unoś palce stóp do góry. Profilaktyka shin splints i achillesa — obowiązkowa przy rosnącym kilometrażu."},
-      {id:"b-m5", name:"Plank (deska)", sets:"3 × 40–60 sek", badge:"core", note:"Postawa neutralna — NIE uginaj lędźwi (częsty błąd u APT). Zaciśnij brzuch jakbyś spodziewał się ciosu. Miednica równo."},
-      {id:"b-m6", name:"Side plank (boczna deska)", sets:"3 × 30 sek / strona", badge:"core", note:"Wzmacnia mięsień poprzeczny brzucha i skośne — kluczowe dla stabilizacji miednicy. Biodra nie opadają."}
+      {id:"b-m1", name:"Wyciskanie hantli nad głowę, siedząc", sets:"3 × 10–12", badge:"push", note:"Plecy oparte, brzuch napięty, nie wyginaj lędźwi. Hantle prowadź nad głowę, prawie się stykają na górze." + HOW("https://planfit.ai/exercise/3002")},
+      {id:"b-m2", name:"Wiosłowanie hantlem", sets:"3 × 10–12 / strona", badge:"pull", note:"Kolano i ręka na ławce. Ciągnij hantel do biodra, łokieć blisko ciała, bez skręcania tułowia." + HOW("https://planfit.ai/exercise/1008")},
+      {id:"b-m3", name:"Odwodzenie bioder na maszynie", sets:"3 × 12–15", badge:"legs", note:"Rozsuwaj nogi w kontrolowany sposób, wracaj powoli. Wzmacnia pośladek średni, który stabilizuje kolano." + HOW("https://www.strengthlog.com/hip-abduction-machine/")},
+      {id:"b-m4", name:"Wspięcia na palce siedząc", sets:"3 × 15", badge:"legs", note:"Pełny zakres: pięty nisko, potem wysoko na palce, krótka pauza na górze." + HOW("https://planfit.ai/exercise/seated-calf-raise-machine")},
+      {id:"b-m5", name:"Unoszenie prostej nogi leżąc", sets:"3 × 10 / noga", badge:"knee", note:"Jak w Dniu A: napnij przód uda, unieś prostą nogę do wysokości drugiego kolana, 2 s pauzy." + HOW(YT("straight+leg+raise+knee+exercise"))},
+      {id:"b-m6", name:"Face pull na wyciągu", sets:"3 × 15", badge:"pull", note:"Lina na wysokości twarzy, ciągnij do czoła, łokcie wysoko. Ćwiczenia 6–9 możesz robić w parach: seria jednego, od razu drugiego, potem przerwa." + HOW("https://www.strengthlog.com/face-pull/")},
+      {id:"b-m7", name:"Prostowniki nadgarstka z hantlem", sets:"2 × 15–20 / ręka", badge:"climb", note:"Przedramię na udzie, dłoń w dół, ruch tylko w nadgarstku. Przeciwwaga dla palców — chroni łokcie przed przeciążeniem." + HOW("https://planfit.ai/exercise/reverse-dumbbell-wrist-curl")},
+      {id:"b-m8", name:"Dead bug", sets:"2 × 8 / strona", badge:"core", note:"Na plecach, kolana pod kątem 90°. Opuszczaj przeciwną rękę i nogę, lędźwie dociśnięte do podłogi." + HOW("https://www.strengthlog.com/dead-bugs/")},
+      {id:"b-m9", name:"Pallof press", sets:"2 × 10 / strona", badge:"core", note:"Bokiem do wyciągu, wypchnij uchwyt przed klatkę i nie daj się skręcić. 2 s pauzy z wyprostowanymi rękami." + HOW("https://www.strengthlog.com/pallof-press/")}
     ],
-    stretch: [
-      {id:"b-s1", name:"Rozciąganie zginaczy biodra (pozycja rycerza)", sets:"3 × 45 sek / noga", badge:"apt", note:"Klęk jednonóż. Pchnij biodra do przodu — nie wyginaj lędźwi! Czujesz rozciąganie z przodu biodra cofniętej nogi. Wykonuj też po każdym biegu."},
-      {id:"b-s2", name:"Rozciąganie mięśnia gruszkowatego (pigeon pose)", sets:"2 × 45 sek / strona", badge:"apt", note:"Leżysz na plecach. Przekreśl kostkę nad kolanem drugiej nogi. Delikatnie przyciągnij obie nogi do klatki. Czujesz w pośladku."}
-    ]
-  },
-  c: {
-    label: "Dzień C — Pull",
-    warmup: [
-      {id:"c-w1", name:"Chin tuck przy ścianie", sets:"3 × 10", badge:"head", note:"Tak samo jak w Dniu A. Codzienne powtarzanie buduje nawyk neutralnej pozycji szyi."},
-      {id:"c-w2", name:"Cat-cow (mobilizacja kręgosłupa)", sets:"2 × 10", badge:"posture", note:"Na czworaka. Wolno zaokrąglaj i wyginaj plecy. 10 powolnych powtórzeń. Przygotowuje kręgosłup do obciążeń."}
-    ],
-    main: [
-      {id:"c-m1", name:"Podciąganie (lub lat pulldown)", sets:"4 × 6–10", badge:"mass", note:"Chwyt nieco szerszy niż barki. Łopatki cofnij zanim zaczniesz ciągnąć. Jeśli podciągania są trudne — lat pulldown z pełnym zakresem ruchu."},
-      {id:"c-m2", name:"Wiosłowanie hantlem jednoręcz", sets:"4 × 10 / strona", badge:"posture", note:"Kolano i ręka oparte na ławce. Hantel ciągnij wzdłuż ciała, łokieć blisko tułowia. Łopatka ściąga się do środka. Kluczowe dla korekcji kyfozy."},
-      {id:"c-m3", name:"Wiosłowanie na wyciągu siedzące (seated cable row)", sets:"3 × 12", badge:"mass", note:"Tułów pionowo (nie kołysz!). Ciągnij do brzucha, łopatki cofaj. Na końcu ruchu — klatka do przodu, barki z tyłu."},
-      {id:"c-m4", name:"Face pulls na wyciągu", sets:"4 × 15", badge:"posture", note:"Face pulls wykonujesz 2× w tygodniu — tylny bark i środkowy trapez są chronicznie słabe u gapiących się w ekran."},
-      {id:"c-m5", name:"Odwrotne rozpiętki na maszynie (rear delt)", sets:"3 × 15", badge:"posture", note:"Maszyna do motyla — odwrotnie. Lub hantlami w opadzie tułowia. Izoluje tylny bark — ważne dla cofnięcia barków z przodu."},
-      {id:"c-m6", name:"Uginanie hantli na biceps (hammer curl)", sets:"3 × 12", badge:"mass", note:"Neutralny chwyt (kciuk do góry). Łokcie przy ciele, kontrolowany ruch w dół."}
-    ],
-    stretch: [
-      {id:"c-s1", name:"Rozciąganie klatki + otwieranie klatki nad wałkiem", sets:"2 min", badge:"posture", note:"Wałek poziomo pod łopatkami. Ręce za głową. Rozluźnij i pozwól klatce opaść w tył. Przesuń wałek od środka łopatek do piersiowego."},
-      {id:"c-s2", name:"Rozciąganie karku (podpotyliczne)", sets:"2 × 30 sek", badge:"head", note:"Splot rąk za głową. Delikatnie pochyl głowę do przodu (bródka do klatki), ręce tylko asekurują — nie ciągnij siłą."}
-    ]
+    stretch: STRETCH("b")
   }
 };
 
 const CORRECTIVE = [
-  {id:"cor1", name:"Chin tuck", sets:"20 powt.", badge:"head", note:"Przy ścianie lub siedząc. Wciągnij brodę — trzymaj 5 sek. Wzmacnia głębokie zginacze szyi, cofa głowę nad ramiona. Efekty po 4–6 tygodniach regularności."},
-  {id:"cor2", name:"Glute bridge", sets:"2 × 15", badge:"apt", note:"Kluczowe zwłaszcza po biegu. Aktywuje pośladki, „wyłącza” nadaktywne zginacze biodra. Ściskaj pośladki 3 sek na górze."},
-  {id:"cor3", name:"Stretching zginaczy biodra", sets:"2 × 45 sek", badge:"apt", note:"Pozycja rycerza. Niezbędna po każdym biegu — bieganie mocno skraca zginacze, co pogłębia APT."},
-  {id:"cor4", name:"Rozciąganie klatki", sets:"2 × 30 sek / stronę", badge:"posture", note:"Przy framudze lub na foam rollerze. Przykurczona klatka ciągnie barki do przodu — bez jej rozciągania trening grzbietu przyniesie połowę efektu."}
+  {id:"kol1", name:"Ocena kolana rano", sets:"0 / 1 / 2", badge:"knee", note:"Wpisz w polu: 0 = ok, 1 = ból większy niż zwykle, 2 = obrzęk. Przy 1 lub 2 kolejny trening nóg na połowie ciężaru i z 1 serią mniej, albo tylko góra ciała."}
 ];
 
-const BADGE_LABEL = {posture:"plecy", apt:"miednica", head:"głowa", core:"core", mass:"masa", run:"bieganie"};
+const BADGE_LABEL = {warm:"rozgrzewka", legs:"nogi", push:"pchanie", pull:"przyciąganie", core:"core", knee:"kolano", climb:"wspinanie"};
+const CLIMB_TYPE = {bouldering:"Bouldering", wedka:"Wędka", panel:"Panel / trening"};
 
 // weekday index from getDay(): 0=Nd,1=Pon,2=Wt,3=Śr,4=Czw,5=Pt,6=Sob
 const SCHEDULE = {
-  1: {type:"gym", key:"b", label:"Dzień B — Nogi + Core"},
-  2: {type:"run", key:"interval", label:"Bieg — interwały / tempo"},
-  3: {type:"gym", key:"a", label:"Dzień A — Push"},
-  4: {type:"run", key:"easy", label:"Bieg — spokojny (jeśli w planie Runna)"},
-  5: {type:"gym", key:"c", label:"Dzień C — Pull"},
+  1: {type:"gym", key:"a", label:"Dzień A — pełne nogi"},
+  2: {type:"rest", label:"Odpoczynek"},
+  3: {type:"gym", key:"b", label:"Dzień B — lekkie nogi"},
+  4: {type:"run", key:"any", label:"Ścianka"},
+  5: {type:"gym", key:"a", label:"Dzień A — pełne nogi"},
   6: {type:"rest", label:"Odpoczynek"},
-  0: {type:"run", key:"long", label:"Bieg — długi dystans"}
+  0: {type:"rest", label:"Odpoczynek (albo ścianka)"}
 };
 const DAY_SHORT = ["Nd","Pon","Wt","Śr","Czw","Pt","Sob"];
 
@@ -146,7 +129,7 @@ function effectiveSched(dateISO, wd){
   const ov = (STATE.overrides||{})[dateISO];
   if(ov){
     if(DAYS[ov]) return {type:'gym', key:ov, label:DAYS[ov].label, overridden:true};
-    if(ov==='run') return {type:'run', key:'any', label:'Bieg', overridden:true};
+    if(ov==='run') return {type:'run', key:'any', label:'Ścianka', overridden:true};
     if(ov==='rest') return {type:'rest', label:'Odpoczynek', overridden:true};
   }
   return SCHEDULE[wd];
@@ -283,19 +266,18 @@ function renderDzis(){
   }
 
   const planSched = SCHEDULE[wd];
-  const planShort = planSched.type==='gym' ? ('Dzień '+planSched.key.toUpperCase()) : (planSched.type==='run' ? 'Bieg' : 'Odpoczynek');
+  const planShort = planSched.type==='gym' ? ('Dzień '+planSched.key.toUpperCase()) : (planSched.type==='run' ? 'Ścianka' : 'Odpoczynek');
   const chip = (val, lbl) => `<button class="swap-chip ${ov===val?'active':''}" onclick="setOverride('${val}')">${lbl}</button>`;
   html += `<div class="swap-row">
     <span class="swap-lbl">${isToday ? 'Dzisiejszy trening' : 'Trening tego dnia'}:</span>
     ${chip('plan','Wg planu ('+planShort+')')}
     ${chip('a','Dzień A')}
     ${chip('b','Dzień B')}
-    ${chip('c','Dzień C')}
-    ${chip('run','Bieg')}
+    ${chip('run','Ścianka')}
     ${chip('rest','Odpoczynek')}
   </div>`;
   if(ov !== 'plan'){
-    html += `<div class="info-card" style="margin-bottom:10px"><p>Zamiana dotyczy tylko tego dnia — reszta tygodnia zostaje wg planu. Pamiętaj, żeby oddać zamieniony dzień w innym terminie (np. dziś B zamiast A → w środę zrób A).</p></div>`;
+    html += `<div class="info-card" style="margin-bottom:10px"><p>Zamiana dotyczy tylko tego dnia — reszta tygodnia zostaje wg planu. Pamiętaj, żeby oddać zamieniony dzień w innym terminie (np. dziś B zamiast A → w środę zrób A). Nie rób ciężkich nóg dzień przed ścianką..</p></div>`;
   }
 
   if(sched.type === 'gym'){
@@ -303,40 +285,39 @@ function renderDzis(){
     html += `<div class="section-label">${isToday?"Dziś":"Ten dzień"}: ${d.label}</div>`;
     html += `<div class="section-label" style="margin-top:14px">Rozgrzewka</div>` + d.warmup.map(ex=>exCardHTML(ex,dateISO,'exercise')).join('');
     html += `<div class="section-label">Trening właściwy</div>` + d.main.map(ex=>exCardHTML(ex,dateISO,'exercise')).join('');
-    html += `<div class="section-label">Stretching końcowy</div>` + d.stretch.map(ex=>exCardHTML(ex,dateISO,'exercise')).join('');
+    html += `<div class="section-label">Rozciąganie na koniec</div>` + d.stretch.map(ex=>exCardHTML(ex,dateISO,'exercise')).join('');
   } else if(sched.type === 'run'){
     html += `<div class="section-label">${isToday?"Dziś":"Ten dzień"}: ${sched.label}</div>`;
     const dayRuns = (getSession(dateISO).runs || []);
     if(!dayRuns.length){
       html += isToday
-        ? `<div class="info-card">Przejdź do zakładki <b>Bieganie</b>, żeby zapisać dzisiejszy trening. Pamiętaj o stretchingu bioder + glute bridge po biegu.</div>`
-        : `<div class="info-card">Brak zapisanego biegu tego dnia. Możesz go dodać w zakładce <b>Bieganie</b>, wybierając tę datę w polu „Data biegu".</div>`;
+        ? `<div class="info-card">Przejdź do zakładki <b>Ścianka</b>, żeby zapisać dzisiejszą sesję. Z boulderów schodź po chwytach, nie zeskakuj. W gorszy dzień dla kolana wybierz wędkę.</div>`
+        : `<div class="info-card">Brak zapisanej sesji tego dnia. Możesz ją dodać w zakładce <b>Ścianka</b>, wybierając tę datę w polu „Data sesji".</div>`;
     }
   } else {
     html += `<div class="section-label">${isToday?"Dziś":"Ten dzień"}: Odpoczynek</div>`;
-    html += `<div class="info-card">Dzień bez treningu siłowego ani biegu. Ćwiczenia korekcyjne poniżej zostają — to jedyny element planu wykonywany codziennie.</div>`;
+    html += `<div class="info-card">Dzień bez siłowni. Regeneracja — spacer albo luźny rowerek są ok. Oceń kolano poniżej.</div>`;
   }
 
   // zapisane biegi danego dnia — widoczne niezależnie od typu dnia
   const runsOfDay = (STATE.sessions[dateISO] && STATE.sessions[dateISO].runs) || [];
   if(runsOfDay.length){
-    const runTypeLbl = {interval:'Interwały/tempo', easy:'Spokojny (easy)', long:'Długi dystans'};
-    html += `<div class="section-label">${runsOfDay.length===1 ? 'Zapisany bieg' : 'Zapisane biegi'}</div>`;
+    html += `<div class="section-label">${runsOfDay.length===1 ? 'Zapisana sesja na ściance' : 'Zapisane sesje na ściance'}</div>`;
     html += runsOfDay.map(r=>{
-      const detail = [r.distance ? r.distance+' km' : null, r.duration || null].filter(Boolean).join(' · ');
+      const detail = [r.distance ? 'max '+r.distance : null, r.duration || null].filter(Boolean).join(' · ');
       return `<div class="run-entry">
         <div class="re-dot" style="background:var(--run)"></div>
         <div class="re-body">
-          <div class="re-date">${runTypeLbl[r.type] || r.type}</div>
+          <div class="re-date">${CLIMB_TYPE[r.type] || r.type}</div>
           <div class="re-detail">${detail || '—'}</div>
           ${r.note ? `<div class="re-note">${r.note}</div>` : ''}
         </div>
-        <button class="re-del" onclick="deleteRun('${dateISO}', ${r.ts||0})" aria-label="Usuń bieg">✕</button>
+        <button class="re-del" onclick="deleteRun('${dateISO}', ${r.ts||0})" aria-label="Usuń sesję">✕</button>
       </div>`;
     }).join('');
   }
 
-  html += `<div class="section-label">Codzienne ćwiczenia korekcyjne</div>`;
+  html += `<div class="section-label">Kolano — ocena dnia</div>`;
   html += CORRECTIVE.map(ex=>exCardHTML(ex,dateISO,'corrective')).join('');
   html += customSectionHTML(dateISO,'dzis');
 
@@ -364,7 +345,7 @@ function renderScheduleGrid(){
     const s = SCHEDULE[i];
     const cls = s.type === 'rest' ? 'rest' : s.type;
     const todayCls = i===wd ? 'today' : '';
-    const shortLbl = s.type==='gym' ? ('Dzień '+s.key.toUpperCase()) : (s.type==='run' ? 'Bieg' : 'Odp.');
+    const shortLbl = s.type==='gym' ? ('Dzień '+s.key.toUpperCase()) : (s.type==='run' ? 'Ścianka' : 'Odp.');
     html += `<div class="day-box ${cls} ${todayCls}">${DAY_SHORT[i]}<span class="lbl">${shortLbl}</span></div>`;
   }
   document.getElementById('scheduleGrid').innerHTML = html;
@@ -377,13 +358,13 @@ function logRun(){
   const duration = document.getElementById('runDuration').value.trim();
   const note = document.getElementById('runNote').value.trim();
   if(!distance && !duration){
-    alert('Podaj przynajmniej dystans lub czas.');
+    alert('Podaj przynajmniej wycenę lub czas.');
     return;
   }
   const dateInput = document.getElementById('runDate');
   let dateISO = (dateInput && dateInput.value) ? dateInput.value : todayISO();
   if(dateISO > todayISO()){
-    alert('Nie można zapisać biegu z przyszłą datą.');
+    alert('Nie można zapisać sesji z przyszłą datą.');
     return;
   }
   const s = getSession(dateISO);
@@ -408,11 +389,11 @@ function renderRunHistory(){
     }
   }
   const el = document.getElementById('runHistory');
-  if(!rows.length){ el.innerHTML = '<div class="empty">Brak zapisanych biegów. Dodaj pierwszy powyżej.</div>'; return; }
+  if(!rows.length){ el.innerHTML = '<div class="empty">Brak zapisanych sesji. Dodaj pierwszą powyżej.</div>'; return; }
   rows.sort((a,b)=> (b.ts||0)-(a.ts||0));
   el.innerHTML = rows.slice(0,20).map(r=>{
-    const typeLabel = r.type==='interval' ? 'Interwały/tempo' : (r.type==='easy' ? 'Spokojny (easy)' : 'Długi dystans');
-    const detail = [r.distance ? r.distance+' km' : null, r.duration || null].filter(Boolean).join(' · ');
+    const typeLabel = CLIMB_TYPE[r.type] || r.type;
+    const detail = [r.distance ? 'max '+r.distance : null, r.duration || null].filter(Boolean).join(' · ');
     return `<div class="run-entry">
       <div class="re-dot"></div>
       <div class="re-body">
@@ -420,7 +401,7 @@ function renderRunHistory(){
         <div class="re-detail">${detail || '—'}</div>
         ${r.note ? `<div class="re-note">${r.note}</div>` : ''}
       </div>
-      <button class="re-del" onclick="deleteRun('${r.date}', ${r.ts||0})" aria-label="Usuń bieg">✕</button>
+      <button class="re-del" onclick="deleteRun('${r.date}', ${r.ts||0})" aria-label="Usuń sesję">✕</button>
     </div>`;
   }).join('');
 }
@@ -431,7 +412,7 @@ function deleteRun(date, ts){
   const idx = s.runs.findIndex(r => (r.ts||0) === ts);
   if(idx === -1) return;
   const r = s.runs[idx];
-  if(!confirm('Usunąć bieg z ' + fmtDate(date) + (r.distance ? ' (' + r.distance + ' km)' : '') + '?')) return;
+  if(!confirm('Usunąć sesję z ' + fmtDate(date) + (r.distance ? ' (max ' + r.distance + ')' : '') + '?')) return;
   s.runs.splice(idx, 1);
   saveState();
   renderAll();
@@ -526,9 +507,9 @@ function renderProgress(){
     const runCount = (s.runs||[]).length;
     const parts = [];
     const pl = (n, one, few, many) => n===1 ? one : ((n%10>=2 && n%10<=4 && (n%100<12 || n%100>14)) ? few : many);
-    if(exDone) parts.push(exDone+' '+pl(exDone,'ćw. siłowe','ćw. siłowe','ćw. siłowych'));
-    if(corDone) parts.push(corDone+' '+pl(corDone,'ćw. korekcyjne','ćw. korekcyjne','ćw. korekcyjnych'));
-    if(runCount) parts.push(runCount+' '+pl(runCount,'bieg','biegi','biegów'));
+    if(exDone) parts.push(exDone+' '+pl(exDone,'ćwiczenie','ćwiczenia','ćwiczeń'));
+    if(corDone) parts.push('kolano oceniane');
+    if(runCount) parts.push(runCount+' '+pl(runCount,'sesja na ściance','sesje na ściance','sesji na ściance'));
     return `<div class="run-entry clickable" onclick="openDay('${iso}')">
       <div class="re-dot" style="background:var(--posture)"></div>
       <div class="re-body">
@@ -557,13 +538,13 @@ function buildWeekExport(){
   const wd = now.getDay();
   const mondayOffset = wd===0 ? -6 : 1-wd;
   const monday = new Date(now); monday.setDate(now.getDate()+mondayOffset);
-  const runTypeLabel = {interval:'interwały/tempo', easy:'spokojny (easy)', long:'długi dystans'};
 
   let lines = [];
   lines.push('PRZEGLĄD TYGODNIA — ' + monday.toLocaleDateString('pl-PL',{day:'numeric',month:'short'}) + ' do ' + now.toLocaleDateString('pl-PL',{day:'numeric',month:'short',year:'numeric'}));
   lines.push('');
 
-  let totalKm = 0, runCount = 0, gymCount = 0, corrDays = 0, longest = 0;
+  let climbCount = 0, gymCount = 0;
+  const knee = [];
 
   for(let i=0;i<7;i++){
     const dd = new Date(monday); dd.setDate(monday.getDate()+i);
@@ -587,22 +568,23 @@ function buildWeekExport(){
     }
     if(s.runs && s.runs.length){
       for(const r of s.runs){
-        runCount++;
-        const dist = parseFloat((r.distance||'').replace(',','.'));
-        if(!isNaN(dist)){ totalKm += dist; if(dist>longest) longest = dist; }
-        lines.push('Bieg (' + (runTypeLabel[r.type]||r.type) + '): ' + [r.distance?r.distance+' km':null, r.duration||null].filter(Boolean).join(', ') + (r.note ? ' — ' + r.note : ''));
+        climbCount++;
+        lines.push('Ścianka (' + (CLIMB_TYPE[r.type]||r.type) + '): ' + [r.distance?'max '+r.distance:null, r.duration||null].filter(Boolean).join(', ') + (r.note ? ' — ' + r.note : ''));
       }
     }
-    const corrDone = Object.values(s.corrective||{}).filter(e=>e.done).length;
-    if(corrDone){ corrDays++; lines.push('Korekcja: ' + corrDone + ' ćw.'); }
+    const k = (s.corrective||{}).kol1;
+    if(k && (k.done || (k.weight && k.weight.trim()))){
+      const v = (k.weight||'').trim() || '?';
+      knee.push(v);
+      lines.push('Kolano: ' + v);
+    }
     lines.push('');
   }
 
   lines.push('PODSUMOWANIE:');
-  lines.push('Sesje siłowe: ' + gymCount + ' | Biegi: ' + runCount + ' | Kilometraż: ' + (Math.round(totalKm*10)/10) + ' km | Najdłuższy: ' + (Math.round(longest*10)/10) + ' km | Dni z korekcją: ' + corrDays + '/7');
+  lines.push('Siłownia: ' + gymCount + ' | Ścianka: ' + climbCount + ' | Oceny kolana: ' + (knee.length ? knee.join(', ') : 'brak'));
   lines.push('');
-  lines.push('Dane ze smart-wagi (uzupełnij lub wklej zrzut): waga ___ kg, tłuszcz ___ %, mięśnie ___ kg, trzewny ___');
-  lines.push('Samopoczucie 1–5: sen ___, energia ___, bolesność ___, postura ___');
+  lines.push('Samopoczucie 1–5: sen ___, energia ___, palce/łokcie ___, plecy ___');
   return lines.join('\n');
 }
 
@@ -642,7 +624,7 @@ function downloadBackup(){
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = todayISO() + '-plan-trening-kopia.json';
+  a.download = todayISO() + '-plan-silownia-kopia.json';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -759,7 +741,6 @@ function renderAll(){
   renderDzis();
   renderDayPanel('a');
   renderDayPanel('b');
-  renderDayPanel('c');
   renderCorrective();
   renderRunHistory();
   renderProgress();

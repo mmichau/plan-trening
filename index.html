@@ -8,14 +8,14 @@
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Plan Trening">
+<meta name="apple-mobile-web-app-title" content="Siłownia">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#F7F7FA">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 
-<title>Siła · masa · bieg</title>
+<title>Siła pod wspinanie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -128,6 +128,13 @@ main{padding:16px 18px 8px;max-width:640px;margin:0 auto}
 .b-core{background:var(--core-bg);color:var(--core)}
 .b-mass{background:var(--mass-bg);color:var(--mass)}
 .b-run{background:var(--run-bg);color:var(--run)}
+.b-warm{background:var(--core-bg);color:var(--core)}
+.b-legs{background:var(--apt-bg);color:var(--apt)}
+.b-push{background:var(--mass-bg);color:var(--mass)}
+.b-pull{background:var(--posture-bg);color:var(--posture)}
+.b-knee{background:var(--head-bg);color:var(--head)}
+.b-climb{background:var(--run-bg);color:var(--run)}
+.ex-note a{color:var(--accent);font-weight:500;text-decoration:none;white-space:nowrap}
 .ex-note{font-size:13px;color:var(--ink-soft);line-height:1.55;margin-top:4px}
 .ex-last{
   font-size:12px;color:var(--accent);margin:3px 0 2px;
@@ -256,7 +263,7 @@ footer.spacer{height:8px}
     <div class="brand-mark"><i></i><i></i><i></i></div>
     <div class="brand-text">
       <div class="eyebrow">Twój plan</div>
-      <h1>Siła · masa · bieg</h1>
+      <h1>Siła pod wspinanie</h1>
     </div>
   </div>
   <div class="today-chip" id="todayChip" onclick="goToday()">
@@ -270,9 +277,8 @@ footer.spacer{height:8px}
   <button class="tab" data-tab="dzis">Dziś</button>
   <button class="tab" data-tab="a">Dzień A</button>
   <button class="tab" data-tab="b">Dzień B</button>
-  <button class="tab" data-tab="c">Dzień C</button>
-  <button class="tab" data-tab="korekcja">Korekcja</button>
-  <button class="tab" data-tab="bieganie">Bieganie</button>
+  <button class="tab" data-tab="korekcja">Kolano</button>
+  <button class="tab" data-tab="bieganie">Ścianka</button>
   <button class="tab" data-tab="postep">Postęp</button>
   <button class="tab" data-tab="info">Info</button>
 </div>
@@ -290,11 +296,8 @@ footer.spacer{height:8px}
     <div id="list-a-warmup"></div>
     <div class="section-label">Trening właściwy</div>
     <div id="list-a-main"></div>
-    <div class="section-label">Stretching końcowy — obowiązkowo</div>
+    <div class="section-label">Rozciąganie na koniec</div>
     <div id="list-a-stretch"></div>
-    <div class="section-label">Na koniec: korekcja (10 min)</div>
-    <div class="info-card" style="margin-bottom:10px"><p>Te same ćwiczenia co w zakładce Korekcja — odhaczenia liczą się w obu miejscach.</p></div>
-    <div id="list-a-corrective"></div>
     <div id="list-a-custom"></div>
   </div>
 
@@ -304,83 +307,70 @@ footer.spacer{height:8px}
     <div id="list-b-warmup"></div>
     <div class="section-label">Trening właściwy</div>
     <div id="list-b-main"></div>
-    <div class="section-label">Stretching końcowy — obowiązkowo</div>
+    <div class="section-label">Rozciąganie na koniec</div>
     <div id="list-b-stretch"></div>
-    <div class="section-label">Na koniec: korekcja (10 min)</div>
-    <div class="info-card" style="margin-bottom:10px"><p>Te same ćwiczenia co w zakładce Korekcja — odhaczenia liczą się w obu miejscach.</p></div>
-    <div id="list-b-corrective"></div>
     <div id="list-b-custom"></div>
   </div>
 
-  <!-- DZIEŃ C -->
-  <div class="panel" id="panel-c">
-    <div class="section-label">Rozgrzewka</div>
-    <div id="list-c-warmup"></div>
-    <div class="section-label">Trening właściwy</div>
-    <div id="list-c-main"></div>
-    <div class="section-label">Stretching końcowy — obowiązkowo</div>
-    <div id="list-c-stretch"></div>
-    <div class="section-label">Na koniec: korekcja (10 min)</div>
-    <div class="info-card" style="margin-bottom:10px"><p>Te same ćwiczenia co w zakładce Korekcja — odhaczenia liczą się w obu miejscach.</p></div>
-    <div id="list-c-corrective"></div>
-    <div id="list-c-custom"></div>
-  </div>
-
-  <!-- KOREKCJA -->
+  <!-- KOLANO (dawniej korekcja) -->
   <div class="panel" id="panel-korekcja">
     <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px;line-height:1.6">
-      Poza siłownią. Wykonuj rano lub wieczorem — 10 minut dziennie. Trening 3× w tygodniu nie wystarczy bez codziennej pracy nad nawykami posturalnymi.
+      Kolano jest sędzią: obrzęk następnego dnia to sygnał, żeby odpuścić. Plan nie zastępuje zaleceń fizjoterapeuty — jeśli coś się z nimi kłóci, wygrywa fizjo.
     </p>
-    <div class="section-label">Codzienne ćwiczenia — dzisiaj</div>
+    <div class="section-label">Ocena dzisiaj</div>
     <div id="list-corrective"></div>
     <div id="list-corrective-custom"></div>
-    <div class="section-label">Wskazówki na co dzień</div>
-    <div class="info-card"><h3>Nawyk „sprawdź postawę”</h3><p>Ustaw przypomnienie w telefonie co 45 min. Przy każdym sygnale: cofnij łopatki, podnieś mostek, chin tuck, napnij lekko brzuch. 5 sekund. Rób to przez 3 miesiące — efekt trwały.</p></div>
-    <div class="info-card"><h3>Pozycja przy komputerze / telefonie</h3><p>Monitor na poziomie oczu. Telefon do poziomu oczu — nie opuszczaj głowy. Każda godzina z głową pochyloną o 45° = ok. 22 kg obciążenia na kręgosłup szyjny.</p></div>
-    <div class="info-card"><h3>Ćwiczenia do unikania na razie</h3><p>Wyciskanie leżąc z dużym zakresem (pogłębia kifozę klatki jeśli klatka jest przykurczona). Crunch / sit-up — zastąp dead bugiem i plankiem.</p></div>
+    <div class="section-label">Zasady bezpieczeństwa</div>
+    <div class="info-card"><h3>Ból w trakcie</h3><p>Maksymalnie 2–3 na 10. Więcej — przerwij ćwiczenie.</p></div>
+    <div class="info-card"><h3>Obrzęk albo większy ból następnego dnia</h3><p>Kolejny trening nóg na połowie ciężaru i z 1 serią mniej, albo tylko góra ciała.</p></div>
+    <div class="info-card"><h3>Zakazane</h3><p>Przysiad ze sztangą, przysiad bułgarski, wykroki, skoki, bieganie.</p></div>
+    <div class="info-card"><h3>Wstrzymane do decyzji fizjo</h3><p>Prostowanie nóg na maszynie (wałek przed piszczelami).</p></div>
+    <div class="info-card"><h3>Pominięte z wyboru</h3><p>Hip thrust, przysiad przy ścianie, martwy ciąg rumuński.</p></div>
+    <div class="section-label">Do ustalenia z fizjo</div>
+    <div class="info-card"><p>• Odnaleźć notatki od fizjo i opis MRI<br>• Czy wolno robić prostowanie nóg, a jeśli tak, w jakim zakresie<br>• Kiedy i jak testować suwnicę w ograniczonym zakresie i wejścia na niską skrzynię<br>• Czym wzmacniać mięsień czworogłowy, skoro przysiad przy ścianie odpada<br>• Jaki ból i obrzęk po treningu są akceptowalne</p></div>
   </div>
 
-  <!-- BIEGANIE -->
+  <!-- ŚCIANKA (dawniej bieganie) -->
   <div class="panel" id="panel-bieganie">
     <div class="info-card" style="margin-bottom:14px">
-      <h3>Cel: półmaraton, październik</h3>
-      <p>Wtorek — krótszy bieg intensywny (interwały/tempo). Czwartek — bieg spokojny (easy), jeśli Runna go zaplanuje. Niedziela — długi, spokojny bieg, wydłużany stopniowo (+1–2 km co 1–2 tyg., co 3–4 tyg. tydzień lżejszy). Sobota — pełny odpoczynek przed długim biegiem, żeby biec na świeżych nogach. Po KAŻDYM biegu: stretching zginaczy biodra + glute bridge (bieganie nasila APT).</p>
+      <h3>Ścianka: czwartek, opcjonalnie niedziela</h3>
+      <p>Dzień przed ścianką bez ciężkich nóg i bez dużo przyciągania. Z boulderów schodzisz po chwytach, nie zeskakujesz. W gorszy dzień dla kolana wybierz wędkę. Jeśli w tygodniu wypadną dwie ścianki, środę robisz bez nóg albo ją pomijasz.</p>
     </div>
-    <div class="section-label">Zapisz dzisiejszy bieg</div>
+    <div class="section-label">Zapisz sesję</div>
     <div class="run-form">
       <div class="row">
         <div style="flex:1">
           <label>Typ</label>
           <select id="runType">
-            <option value="interval">Interwały / tempo</option>
-            <option value="easy">Spokojny (easy)</option>
-            <option value="long">Długi dystans</option>
+            <option value="bouldering">Bouldering</option>
+            <option value="wedka">Wędka</option>
+            <option value="panel">Panel / trening</option>
           </select>
         </div>
       </div>
       <div class="row">
         <div style="flex:1">
-          <label>Dystans (km)</label>
-          <input type="text" id="runDistance" inputmode="decimal" placeholder="np. 6.5">
+          <label>Najtrudniej (wycena)</label>
+          <input type="text" id="runDistance" placeholder="np. 6a / 6B">
         </div>
         <div style="flex:1">
           <label>Czas</label>
-          <input type="text" id="runDuration" placeholder="np. 38 min">
+          <input type="text" id="runDuration" placeholder="np. 90 min">
         </div>
       </div>
       <div class="row">
         <div style="flex:1">
-          <label>Data biegu</label>
+          <label>Data sesji</label>
           <input type="date" id="runDate">
         </div>
         <div style="flex:1">
           <label>Notatka</label>
-          <input type="text" id="runNote" placeholder="samopoczucie, tempo">
+          <input type="text" id="runNote" placeholder="kolano, palce, samopoczucie">
         </div>
       </div>
-      <button class="btn" onclick="logRun()">Zapisz bieg</button>
+      <button class="btn" onclick="logRun()">Zapisz sesję</button>
     </div>
-    <div class="section-label">Historia biegów</div>
+    <div class="section-label">Historia sesji</div>
     <div id="runHistory"></div>
   </div>
 
@@ -389,7 +379,7 @@ footer.spacer{height:8px}
     <div class="stat-row">
       <div class="stat"><div class="val" id="statStreak">0</div><div class="lbl">dni z rzędu</div></div>
       <div class="stat"><div class="val" id="statWeek">0/7</div><div class="lbl">ten tydzień</div></div>
-      <div class="stat"><div class="val" id="statRuns">0</div><div class="lbl">biegów łącznie</div></div>
+      <div class="stat"><div class="val" id="statRuns">0</div><div class="lbl">sesji na ściance</div></div>
     </div>
     <div class="section-label">Ostatnie 4 tygodnie</div>
     <div class="dotgrid-labels"><span>P</span><span>W</span><span>Ś</span><span>C</span><span>P</span><span>S</span><span>N</span></div>
@@ -397,9 +387,9 @@ footer.spacer{height:8px}
     <div class="info-card" style="margin-top:10px">
       <div style="display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--ink-soft)">
         <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--posture)"></span>trening siłowy</span>
-        <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--run)"></span>bieg</span>
+        <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--run)"></span>ścianka</span>
         <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--rest)"></span>odpoczynek</span>
-        <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--corr)"></span>korekcja (codziennie)</span>
+        <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--corr)"></span>ocena kolana</span>
       </div>
     </div>
     <div class="section-label">Ostatnie wpisy</div>
@@ -410,7 +400,7 @@ footer.spacer{height:8px}
     <button class="btn" id="backupBtn" onclick="downloadBackup()">Pobierz kopię danych 💾</button>
     <button class="btn" style="margin-top:8px" onclick="document.getElementById('backupFile').click()">Wczytaj kopię 📥</button>
     <input type="file" id="backupFile" accept=".json,application/json" style="display:none" onchange="importBackup(this)">
-    <div class="info-card" style="margin-top:10px"><p>Kopia zawiera całą historię: odhaczenia, ciężary, biegi i zamiany dni. Pobieraj ją co kilka tygodni i trzymaj np. w iCloud — wczytasz ją na nowym telefonie albo po przypadkowym usunięciu apki. Wczytanie kopii zastępuje obecne dane.</p></div>
+    <div class="info-card" style="margin-top:10px"><p>Kopia zawiera całą historię: odhaczenia, ciężary, sesje na ściance, oceny kolana i zamiany dni. Pobieraj ją co kilka tygodni i trzymaj np. w iCloud — wczytasz ją na nowym telefonie albo po przypadkowym usunięciu apki. Wczytanie kopii zastępuje obecne dane.</p></div>
     <footer class="spacer"></footer>
   </div>
 
@@ -418,18 +408,16 @@ footer.spacer{height:8px}
   <div class="panel" id="panel-info">
     <div class="section-label">Tygodniowy harmonogram</div>
     <div class="schedule-grid" id="scheduleGrid"></div>
-    <div class="section-label">Problemy do naprawienia</div>
-    <div class="problem-card p-kypho"><h3>Garbienie pleców (hiperkifoza)</h3><p>Przyczyna: słabe mięśnie grzbietu środkowego, przykurczone piersiowe. Rozwiązanie: wiosłowanie, face pulls, rozciąganie klatki.</p></div>
-    <div class="problem-card p-head"><h3>Głowa wysunięta do przodu</h3><p>Przyczyna: słabe głębokie zginacze szyi, napięte mięśnie szyi tylne. Rozwiązanie: chin tucks, ćwiczenia głębokich zginaczy, rozciąganie karku.</p></div>
-    <div class="problem-card p-apt"><h3>Przednie pochylenie miednicy (APT)</h3><p>Przyczyna: słabe pośladki i brzuch, przykurczone zginacze biodra i lędźwie. Rozwiązanie: hip thrust, dead bug, stretching bioder + wyłączenie ćwiczeń pogłębiających lordozę.</p></div>
+    <div class="info-card" style="margin-top:10px"><p>Poniedziałek i piątek — Dzień A (pełne nogi). Środa — Dzień B (lekkie nogi, mało chwytu przed czwartkową ścianką). Cel: ogólna siła pod wspinanie i mocniejsze nogi bez przeciążania kolana.</p></div>
     <div class="section-label">Zasady progresji</div>
-    <div class="info-card"><h3>Progresja obciążeń</h3><p>Zwiększaj ciężar o 2–5% gdy wykonasz wszystkie serie z górnym przedziałem powtórzeń (np. 3×12). Zapisuj wyniki przy ćwiczeniu (stuknij checkbox, żeby pokazać pole na ciężar).</p></div>
-    <div class="info-card"><h3>Przerwy między seriami</h3><p>Ćwiczenia złożone (przysiad, martwy ciąg, wiosłowanie): 2–3 min. Izolowane i korektywne: 60–90 sek.</p></div>
-    <div class="info-card"><h3>Uwaga o bieganiu</h3><p>Bieganie angażuje zginacze biodra — to nasila APT. Zawsze po biegu: stretching bioder + glute bridge jako korekta.</p></div>
-    <div class="info-card"><h3>Deload siłowy</h3><p>Co 4–5 tygodni jeden lżejszy tydzień na siłowni: te same ćwiczenia, ok. 60–70% zwykłych ciężarów, o 1 serię mniej. Mięśnie rosną w regeneracji — deload to część progresji, nie przerwa w niej.</p></div>
-    <div class="section-label">Faza: budowa masy (bez redukcji)</div>
-    <div class="info-card"><h3>Żywienie w tej fazie</h3><p>Jedz na zero kaloryczne lub lekki plus (+100–150 kcal). Białko: 140 g dziennie (ok. 2,2 g/kg). Deficyt odpada — przy 16% tkanki tłuszczowej i nadchodzącym kilometrażu 20+ km/tydz. redukcja hamuje budowę mięśni i regenerację. Ten miesiąc lekkich biegów to najlepsze okno na budowę masy przed sezonem — wykorzystaj je progresją ciężarów.</p></div>
-    <div class="info-card"><h3>Gdy kilometraż wzrośnie (od ~połowy sierpnia)</h3><p>Priorytetem staje się bieganie: jeśli tydzień jest ciężki, odpuść w pierwszej kolejności Dzień A (Push) — Nogi i Pull zostają, bo podtrzymują posturę i siłę biegową. Jedz więcej w dni długich biegów, nie tnij węglowodanów.</p></div>
+    <div class="info-card"><h3>Tydzień 1</h3><p>2 serie zamiast 3, lekki ciężar, nauka ruchu. Cel: zakończyć tydzień bez obrzęku.</p></div>
+    <div class="info-card"><h3>Tygodnie 2–4</h3><p>3 serie po 10–12 powtórzeń. Każdą serię kończysz z zapasem 2–3 powtórzeń — mięśnie wracają szybciej niż ścięgna i kolano.</p></div>
+    <div class="info-card"><h3>Kiedy dokładać ciężar</h3><p>Gdy we wszystkich seriach robisz 12 powtórzeń z zapasem: najmniejszy możliwy skok (1–2 kg na hantlach, 2,5–5 kg na maszynach) i wracasz do 10 powtórzeń. Zapisuj ciężar przy ćwiczeniu — stuknij kartę, żeby pokazać pole.</p></div>
+    <div class="info-card"><h3>Od tygodnia 5</h3><p>Wyciskanie na ławce, wyciskanie nad głowę, podciąganie i wyprosty tułowia: 3–4 × 6–8 powtórzeń, pod siłę. Reszta bez zmian.</p></div>
+    <div class="info-card"><h3>Przerwy</h3><p>Większe ćwiczenia: 90 s – 2 min. Lekkie i core: 45–60 s.</p></div>
+    <div class="info-card"><h3>Deload</h3><p>Co 4–5 tygodni jeden lżejszy tydzień: te same ćwiczenia, ok. 60–70% zwykłych ciężarów, o 1 serię mniej.</p></div>
+    <footer class="spacer"></footer>
+  </div>
 
 
 </main>

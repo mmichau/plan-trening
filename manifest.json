@@ -1,7 +1,7 @@
 {
-  "name": "Plan — postura, masa, półmaraton",
-  "short_name": "Plan Treningowy",
-  "description": "Plan treningowy: postura, masa, przygotowanie do półmaratonu",
+  "name": "Plan — siła pod wspinanie",
+  "short_name": "Siłownia",
+  "description": "Plan siłowni pod wspinanie z ochroną kolana",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
